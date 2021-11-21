@@ -1,0 +1,43 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/articulo",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/articulo",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "Key": "articulo"
+    },
+    {
+      "DownstreamPathTemplate": "/api/categoria",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/categoria",
+      "UpstreamHttpMethod": [ "POST" ],
+      "Key": "categoria"
+    },
+    {
+      "DownstreamPathTemplate": "/api/item",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "distribucion",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/item",
+      "UpstreamHttpMethod": [ "GET" ],
+      "Key": "itemDistribucion"
+    }
+  ]
+}

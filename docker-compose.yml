@@ -1,0 +1,29 @@
+version: '3.4'
+
+networks:
+  proxynet:
+    driver: host
+   
+
+services:
+  apigateway:
+    image: ${DOCKER_REGISTRY-}ms-apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    ports:
+      - "8000:80"
+      - "32773:443"
+    depends_on:
+      - catalog
+      - distribucion
+
+  catalog:
+    image: josecogm/ms-catalogo:1
+    environment: 
+      - ConnectionStrings__DBConnectionString=Data Source=host.docker.internal\MSSQLSERVER,1433;Initial Catalog=CatalogoDb;User ID=sa;Password=aaaaaa
+
+  distribucion:
+    image: josecogm/ms-distribucion:1
+    environment: 
+      - ConnectionStrings__DBConnectionString=Data Source=host.docker.internal\MSSQLSERVER,1433;Initial Catalog=DistribucionDb;User ID=sa;Password=aaaaaa
